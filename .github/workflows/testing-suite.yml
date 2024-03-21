@@ -39,7 +39,18 @@ jobs:
           cache: 'maven'
 
       - name: Compiling and Building Mule App (MMP mule maven plugin)
-        run: mvn clean package -DskipTests    
+        run: mvn clean package -DskipTests  
+
+      - name: Unit Testing
+        if: ${{ false }}
+        run: mvn clean test  
+
+      - name: Install Anypoint CLI
+        run: npm install -g anypoint-cli-v4 
+
+   # Automation using Any CLI
+      - name: Print Account Information
+        run: anypoint-cli-v4 account:user:describe --client_id 2a2f32d794d54dfea9f3a03f708e2d5f --client_secret 0a2ca6FFBE6f4A419A5AE0195F605C89 -o json
 
       - name: Integration Testing ( Install BAT CLI)
         if: ${{ false }}
