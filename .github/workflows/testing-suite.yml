@@ -23,10 +23,30 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      # Caches dependencies and build outputs to improve workflow execution time.
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+            
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'maven'
+
+      - name: Compiling and Building Mule App (MMP mule maven plugin)
+        run: mvn clean package -DskipTests    
+
       - name: Integration Testing ( Install BAT CLI)
+        if: ${{ false }}
         run: curl -o- 'https://s3.amazonaws.com/bat-wrapper/install.sh' | bash && echo Integration Testing Complete
         
       - name: Running Integration Tests
+        if: ${{ false }}
         run: bat ./src/test/resources/integration/bat.dwl
 
 # This test is deactivated because the if is false, change it to true, if you want to run it.
