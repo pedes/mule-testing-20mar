@@ -52,6 +52,10 @@ jobs:
       - name: Print Account Information
         run: anypoint-cli-v4 account:user:describe --client_id 2a2f32d794d54dfea9f3a03f708e2d5f --client_secret 0a2ca6FFBE6f4A419A5AE0195F605C89 -o json
 
+      - name: Cloudhub Apps list
+        run: anypoint-cli-v4 runtime-mgr:application:list --environment Sandbox --organization c0de5239-be27-4b9f-936a-b2c99717cb62 --client_id 2a2f32d794d54dfea9f3a03f708e2d5f --client_secret 0a2ca6FFBE6f4A419A5AE0195F605C89 -o json
+
+
       - name: Integration Testing ( Install BAT CLI)
         if: ${{ false }}
         run: curl -o- 'https://s3.amazonaws.com/bat-wrapper/install.sh' | bash && echo Integration Testing Complete
