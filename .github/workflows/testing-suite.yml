@@ -66,7 +66,6 @@ jobs:
 
 # This test is deactivated because the if is false, change it to true, if you want to run it.
       - name: Performance Testing
-        if: ${{ false }}
         uses: grafana/k6-action@v0.2.0
         with:
           filename: ./src/test/resources/performance/test.js  
