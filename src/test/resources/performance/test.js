@@ -8,5 +8,5 @@ export const options = {
 };
 
 export default function () {
-  http.get('https://orders-app-enw60f.5sc6y6-1.usa-e2.cloudhub.io/orders');
+  http.get('https://orders-api-atntfb.5sc6y6-1.usa-e2.cloudhub.io/orders');
 }
